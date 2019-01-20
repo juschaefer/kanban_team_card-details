@@ -1,0 +1,1 @@
+# kanban_team_card-details
