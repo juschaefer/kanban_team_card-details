@@ -105,7 +105,7 @@
                                                         "id": "priority",
                                                         "oninput": "%oninput_priority%",
                                                         "value": "%priority%",
-                                                        // "":  "readonly"
+                                                        "readonly": true
                                                     }
                                                 }
                                             ]
@@ -169,7 +169,6 @@
                                                     "id": "summary",
                                                     "inner": "%summary%",
                                                     "oninput": "%oninput_summary%"
-                                                    // "readonly",
                                                 }
                                             }
 
