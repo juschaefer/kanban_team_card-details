@@ -6,6 +6,12 @@
 
 (function () {
 
+    const DATA_SERVER = "http://192.168.99.101:8080";
+    const LOG_NAME = "kanban_team_log";
+
+    // const PROJECT = "jschae2s_sose_19";
+    const PROJECT = "sose_19";
+
     const component = {
 
         name: 'kanban_team_card-details',
@@ -37,7 +43,7 @@
                                           "tag": "input",
                                           "type": "text",
                                           "class": "form-control no_border col-form-label-lg",
-                                          "style": "margin: 0 0 1rem 0;",
+                                          "style": "margin: 0 0 1rem 0; font-weight: bold;",
                                           "id": "title",
                                           "placeholder": "Title",
                                           "value": "%title%",
@@ -146,36 +152,36 @@
                             ],
 
                         },
-                        {
-                            "class": "card",
-                            "inner": [{
-                                "class": "card-header",
-                                "inner": {
-                                    "tag": "h5",
-                                    "inner": "Zusammenfassung"
-                                }
-                            }, {
-                                "class": "card-body",
-                                "inner": [
-                                    {
-                                        "class": "form-group",
-                                        "inner":
-                                            {
-                                                "class": "",
-                                                "inner": {
-                                                    "tag": "textarea",
-                                                    // "type": "text",
-                                                    "class": "form-control",
-                                                    "id": "summary",
-                                                    "inner": "%summary%",
-                                                    "oninput": "%oninput_summary%"
-                                                }
-                                            }
-
-                                    }
-                                ]
-                            }]
-                        },
+                        // {
+                        //     "class": "card",
+                        //     "inner": [{
+                        //         "class": "card-header",
+                        //         "inner": {
+                        //             "tag": "h5",
+                        //             "inner": "Zusammenfassung"
+                        //         }
+                        //     }, {
+                        //         "class": "card-body",
+                        //         "inner": [
+                        //             {
+                        //                 "class": "form-group",
+                        //                 "inner":
+                        //                     {
+                        //                         "class": "",
+                        //                         "inner": {
+                        //                             "tag": "textarea",
+                        //                             // "type": "text",
+                        //                             "class": "form-control",
+                        //                             "id": "summary",
+                        //                             "inner": "%summary%",
+                        //                             "oninput": "%oninput_summary%"
+                        //                         }
+                        //                     }
+                        //
+                        //             }
+                        //         ]
+                        //     }]
+                        // },
                         {
                             "class": "card",
                             "inner": [{
@@ -221,11 +227,54 @@
             icon: {
                 "owner": "https://ccmjs.github.io/akless-components/kanban_card/resources/owner.svg",
                 "deadline": "https://ccmjs.github.io/akless-components/kanban_card/resources/deadline.svg"
-            }
+            },
 
             //  "onchange": function ( event ) { console.log( this.index, 'onchange', this.getValue(), event ) },
             //  "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.2.0.js", [ "ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "guest" ] ],
             //  "logger": [ "ccm.instance", "https://ccmjs.github.io/akless-components/log/versions/ccm.log-4.0.1.js", [ "ccm.get", "https://ccmjs.github.io/akless-components/log/resources/configs.js", "greedy" ] ]
+            logger: ["ccm.instance", "https://ccmjs.github.io/akless-components/log/ccm.log.js", {
+                "logging": {
+                    "data": true,
+                    "browser": true,
+                    "parent": true,
+                    "root": true,
+                    "user": true,
+                    "website": true
+                },
+                "events": {
+                    "start": {
+                        "data": true,
+                        "browser": true,
+                        "parent": true,
+                        "root": true,
+                        "user": true,
+                        "website": true
+                    }
+                },
+                "hash": [ "ccm.load", "https://ccmjs.github.io/akless-components/libs/md5/md5.js" ],
+                "onfinish": {
+                    "store": {
+                        "settings": {"name": LOG_NAME + "_card-details", "url": DATA_SERVER},
+                        // "permissions": {
+                        //     "creator": "jschae2s",
+                        //     "team": {
+                        //         "jschae2s": true,
+                        //         "cmann2s": true,
+                        //         "lmuell2s": true
+                        //     },
+                        //     "group": {
+                        //         "mkaul2m": true,
+                        //         "akless2m": true
+                        //     },
+                        //     "access": {
+                        //         "get": "group",
+                        //         "set": "creator",
+                        //         "del": "creator"
+                        //     }
+                        // }
+                    }
+                },
+            }],
 
         },
 
@@ -455,13 +504,38 @@
                                     "store": [
                                         "ccm.store",
                                         {
-                                            "name": "voting_data",
-                                            // "url": "https://ccm2.inf.h-brs.de"
-                                            "url": "http://192.168.99.101:8080"
+                                            "name": "voting",
+                                            "url": DATA_SERVER
                                         }
                                     ],
                                     "key": id
-                                }
+                                },
+                                "logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", {
+                                    // "events": {
+                                    //     "start": {
+                                    //         "data": true,
+                                    //         "user": true
+                                    //     },
+                                    //     "join": {
+                                    //         "data": true,
+                                    //         "user": true
+                                    //     }
+                                    // },
+                                    "hash": [ "ccm.load", "https://ccmjs.github.io/akless-components/libs/md5/md5.js" ],
+                                    "onfinish": {
+                                        "store": {
+                                            "settings": {"name": LOG_NAME + "_voting", "url": DATA_SERVER},
+                                            "permissions": {
+                                                "creator": self.user.data().user,
+                                                "access": {
+                                                    "get": "group",
+                                                    "set": "creator",
+                                                    "del": "creator"
+                                                }
+                                            }
+                                        }
+                                    }
+                                } ],
                             }
                         ],
                         "sorting_by_voting": false,
@@ -470,13 +544,38 @@
                             "store": [
                                 "ccm.store",
                                 {
-                                    "name": "voting_data",
-                                    // "url": "https://ccm2.inf.h-brs.de"
-                                    "url": "http://192.168.99.101:8080"
+                                    "name": "comments",
+                                    "url": DATA_SERVER
                                 }
                             ],
                             "key": id
-                        }
+                        },
+                        "logger": [ "ccm.instance", "../../akless-components/log/ccm.log.js", {
+                            // "events": {
+                            //     "start": {
+                            //         "data": true,
+                            //         "user": true
+                            //     },
+                            //     "join": {
+                            //         "data": true,
+                            //         "user": true
+                            //     }
+                            // },
+                            "hash": [ "ccm.load", "https://ccmjs.github.io/akless-components/libs/md5/md5.js" ],
+                            "onfinish": {
+                                "store": {
+                                    "settings": {"name": LOG_NAME + "_comments", "url": DATA_SERVER},
+                                    "permissions": {
+                                        "creator": self.user.data().user,
+                                        "access": {
+                                            "get": "group",
+                                            "set": "creator",
+                                            "del": "creator"
+                                        }
+                                    }
+                                }
+                            }
+                        } ],
                     }
                 );
 
