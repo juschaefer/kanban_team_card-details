@@ -7,10 +7,10 @@
 (function () {
 
     const DATA_SERVER = "http://192.168.99.101:8080";
-    const LOG_NAME = "kanban_team_log";
+    const LOG_NAME = "jschae2s_kanban_team_log";
 
-    // const PROJECT = "jschae2s_sose_19";
-    const PROJECT = "sose_19";
+    const PROJECT = "jschae2s_sose_19";
+    // const PROJECT = "sose_19";
 
     const component = {
 
@@ -326,7 +326,7 @@
                 console.log("ccm: id", id);
 
 
-                const store = await ccm.store({"name": "kanban_team_cards", "url": "http://192.168.99.101:8080"});
+                const store = await ccm.store({"name": "jschae2s_kanban_team_cards", "url": "http://192.168.99.101:8080"});
                 self.data.store = store;
                 data = await store.get(id);
                 console.log(data);
@@ -544,7 +544,7 @@
                             "store": [
                                 "ccm.store",
                                 {
-                                    "name": "comments",
+                                    "name": "jschae2s_comments",
                                     "url": DATA_SERVER
                                 }
                             ],
