@@ -1,0 +1,20 @@
+/**
+ * @overview layout of ccm component for rendering a kanban-team wrapper
+ * @author Julian Schäfer <Julian.Schaefer@smil.inf.h-brs.de> 2019
+ * @license The MIT License (MIT)
+ */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+#element {
+    font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+    /*font-size: 1em;*/
+    font-size: 0.9em;
+    font-style: normal;
+    line-height: 1.4em;
+    color: #192429;
+    /*color: #475054;*/
+}
+
+.card {
+    margin-bottom: 1.0em;
+}
