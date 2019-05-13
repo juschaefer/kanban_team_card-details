@@ -200,9 +200,6 @@
                 "deadline": "https://ccmjs.github.io/akless-components/kanban_card/resources/deadline.svg"
             },
 
-            //  "onchange": function ( event ) { console.log( this.index, 'onchange', this.getValue(), event ) },
-            //  "user": [ "ccm.instance", "https://ccmjs.github.io/akless-components/user/versions/ccm.user-8.2.0.js", [ "ccm.get", "https://ccmjs.github.io/akless-components/user/resources/configs.js", "guest" ] ],
-
         },
 
         Instance: function () {
